@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Page</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="form" style="text-align: center;">
+    <h2>Verify your account</h2>  
+    <p>Please key in the four digit verfication code that was sent to your mail.</p>
+    <form action="" autocomplete="off">
+        
+        <div class="fields-input">
+            <input type="number" name="OTP1" class="otp_field"  min="0" maxlength="1" required onpaste="false">
+            <input type="number" name="OTP2" class="otp_field"  min="0" maxlength="1" required onpaste="false">
+            <input type="number" name="OTP3" class="otp_field"  min="0" maxlength="1" required onpaste="false">
+            <input type="number" name="OTP4" class="otp_field"  min="0" maxlength="1" required onpaste="false">
+        </div>
+        <div class="submit">
+            <input type="submit" value="verify" class="button">
+        </div>
+    </form>
+    </div>
+    </div>
+</body>
+</html>

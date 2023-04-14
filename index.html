@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+<body onload="demo1()">
     <div class="registration">
         <div class="registration_container">
             <div class="registration_image">
@@ -17,48 +19,138 @@
                 <h1 class="title">Get <br /> In Touch <br /> With Us</h1>
                 <p class="site">www.mywebsite.com</p>
             </div>
-            <form action="" 
-            class="registration_form"></form>
-            <h1 class="title">Create an account</h1>
 
-            <div class="row">
-                <div class="col-sm-6 mb-4">
-                    <label for="firstName" 
-                    class="form-labe">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName">
+            <form action="" class="registration_form">
+                <h1 class="title">Create an account</h1>
+
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName">
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName">
+                    </div>
                 </div>
-                <div class="col-sm-6 mb-4">
-                    <label for="lastName" 
-                    class="form-labe">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName">
-            </div>
 
-            <div class="col-sm-12.mb-4">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" />
-            </div>
 
-            <div class="col-sm-6 mb-4">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" />
-            </div>
-
-            <div class="col-sm-6 mb-4">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="confirmPassword" class="form-control" id="confirmPassword" name="confirmPassword" />
-            </div>
-
-            <div class="col-sm-12 mb-4">
-                <label for="gender" class="form-label w-100">Gender</label>
-
-                <div class="form-check form-check-inline">
-                    <input type="radio" name="gender" id="male" class="form-check-input">
-                    <label for="male" class="form-check-inline">Male</label>
+                <div class="col-sm-12 mb-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" />
                 </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" name="gender" id="female" class="form-check-input">
-                    <label for="female" class="form-check-inline">Female</label>
+
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" minlength="8" id="password" name="password" />
+                        <p id="strength"></p>
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="Password" class="form-control" id="confirmPassword" name="confirmPassword" />
+                        <p id="passwordchecker"></p>
+                    </div>
                 </div>
-                
+
+                <div class="col-sm-12 mb-4">
+                    <label for="gender" class="form-label w-100">Gender</label>
+
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="male" class="form-check-input">
+                        <label for="male" class="form-check-inline">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="female" class="form-check-input">
+                        <label for="female" class="form-check-inline">Female</label>
+                    </div>
+                </div>
+
+                <div class="captcha">
+                    <input type="text" name="" value="" id="txt"><br>
+                    <s style="text-decoration: none;"></s>
+                    <img src="refresh.png" onclick="demo1()" height="40px" alt="">
+                </div>
+
+
+                <div class="col-sm-12">
+                    <a href="home.html">
+                        <input type="button" id="submitBtn" class="btn btn-dark w-50" value="Sign up"
+                        style="cursor: pointer; font-weight: 700;">
+                    </a>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function demo1() {
+            var str = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+            var captcha = "";
+            for (var i = 0; i < 6; i++) {
+                var ri = Math.floor(Math.random() * str.length);
+                captcha += str.charAt(ri);
+            }
+            document.querySelector("s").textContent = captcha;
+        }
+
+        let timeout;
+
+        // traversing the DOM and getting the input and span using their IDs
+
+        let password = document.getElementById('password')
+        let passwordconfirm = document.getElementById('confirmpassword')
+        let strengthBadge = document.getElementById('strength')
+        let passwordstatement = document.getElementById("passwordchecker")
+
+        // The strong and weak password Regex pattern checker
+
+        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+        let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}))')
+
+        function StrengthChecker(PasswordParameter) {
+            // We then change the badge's color and text based on the password strength
+
+            if (strongPassword.test(PasswordParameter)) {
+                strengthBadge.style.color = "green"
+                strengthBadge.textContent = 'Strong'
+            }
+            else if (PasswordParameter <= 0) {
+                strengthBadge.textContent = ''
+            }
+            else if (mediumPassword.test(PasswordParameter)) {
+                strengthBadge.style.color = 'blue'
+                strengthBadge.textContent = 'Medium'
+            } else {
+                strengthBadge.style.color = 'red'
+                strengthBadge.textContent = 'Weak'
+            }
+        }
+
+        // Adding an input event listener when a user types to the  password input 
+
+        password.addEventListener("input", () => {
+
+
+            // strengthBadge.style.display= 'block'
+            clearTimeout(timeout);
+
+            //We then call the StrengChecker function as a callback then pass the typed password to it
+
+            timeout = setTimeout(() => StrengthChecker(password.value), 500);
+
+        });
+
+        // if (password !== passwordconfirm) {
+        //    passwordstatement.textContent = "password doesnt match" 
+        // }
+
+
+    </script>
+
 </body>
+
 </html>
