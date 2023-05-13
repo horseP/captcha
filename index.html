@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="style.css">
+    <script src="captcha.js"></script>
 </head>
 
 <body onload="demo1()">
@@ -20,73 +21,100 @@
                 <p class="site">www.mywebsite.com</p>
             </div>
 
-            <form action="" class="registration_form">
+            <form class="registration_form" onsubmit="formSubmit(event)">
                 <h1 class="title">Create an account</h1>
 
                 <div class="row">
                     <div class="col-sm-6 mb-4">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName">
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
                     </div>
 
                     <div class="col-sm-6 mb-4">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <input type="text" Required="true" class="form-control" id="lastName" name="lastName" required>
                     </div>
                 </div>
 
 
                 <div class="col-sm-12 mb-4">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" />
+                    <input type="email" class="form-control" id="email" name="email" required />
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6 mb-4">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" minlength="8" id="password" name="password" />
+                        <input type="password" class="form-control" minlength="8" id="password" name="password"
+                            required />
                         <p id="strength"></p>
                     </div>
 
                     <div class="col-sm-6 mb-4">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="Password" class="form-control" id="confirmPassword" name="confirmPassword" />
-                        <p id="passwordchecker"></p>
+                        <input type="Password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            required />
                     </div>
+                    <p id="passwordchecker"></p>
                 </div>
 
                 <div class="col-sm-12 mb-4">
                     <label for="gender" class="form-label w-100">Gender</label>
 
                     <div class="form-check form-check-inline">
-                        <input type="radio" name="gender" id="male" class="form-check-input">
+                        <input type="radio" name="gender" id="male" class="form-check-input" required>
                         <label for="male" class="form-check-inline">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="radio" name="gender" id="female" class="form-check-input">
+                        <input type="radio" name="gender" id="female" class="form-check-input" required>
                         <label for="female" class="form-check-inline">Female</label>
                     </div>
                 </div>
 
                 <div class="captcha">
-                    <input type="text" name="" value="" id="txt"><br>
+                    <input type="text" name="" value="" id="txt" required><br>
                     <s style="text-decoration: none;"></s>
                     <img src="refresh.png" onclick="demo1()" height="40px" alt="">
                 </div>
 
-
-                <div class="col-sm-12">
-                    <a href="home.html">
-                        <input type="button" id="submitBtn" class="btn btn-dark w-50" value="Sign up"
-                        style="cursor: pointer; font-weight: 700;">
-                    </a>
+                <button id="submitBtn" class="btn btn-dark w-50">
+                    Sign up
+                </button>
+                <!-- <div class="col-sm-12">
                     
-                </div>
+                        <input type="button"  value="Sign up"
+                    
+                </div> -->
             </form>
         </div>
     </div>
 
     <script type="text/javascript">
+        let timeout;
+
+        // traversing the DOM and getting the input and span using their IDs
+
+        let password = document.getElementById('password')
+        let passwordconfirm = document.getElementById('confirmPassword')
+        let strengthBadge = document.getElementById('strength')
+        let passwordstatement = document.getElementById("passwordchecker")
+
+        // The strong and weak password Regex pattern checker
+
+        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+        let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}))')
+
+        function formSubmit(event) {
+            event.preventDefault()
+            console.log(passwordconfirm.value)
+            if (password.value !== passwordconfirm.value) {
+                passwordstatement.style.color = 'red'
+                passwordstatement.textContent = "password doesn't match"
+            }else{
+              window.location.assign('/home.html')  
+            }
+            
+        }
         function demo1() {
             var str = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
             var captcha = "";
@@ -96,20 +124,6 @@
             }
             document.querySelector("s").textContent = captcha;
         }
-
-        let timeout;
-
-        // traversing the DOM and getting the input and span using their IDs
-
-        let password = document.getElementById('password')
-        let passwordconfirm = document.getElementById('confirmpassword')
-        let strengthBadge = document.getElementById('strength')
-        let passwordstatement = document.getElementById("passwordchecker")
-
-        // The strong and weak password Regex pattern checker
-
-        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
-        let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,}))')
 
         function StrengthChecker(PasswordParameter) {
             // We then change the badge's color and text based on the password strength
@@ -144,9 +158,7 @@
 
         });
 
-        // if (password !== passwordconfirm) {
-        //    passwordstatement.textContent = "password doesnt match" 
-        // }
+
 
 
     </script>
