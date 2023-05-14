@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="captcha.js"></script>
+</head>
+
+<body onload="demo1()">
+    <div class="registration">
+        <div class="registration_container">
+            <div class="registration_image">
+                <div class="overlay"></div>
+                <h1 class="title">Get <br /> In Touch <br /> With Us</h1>
+                <p class="site">www.mywebsite.com</p>
+            </div>
+
+            <form class="registration_form" onsubmit="formSubmit(event)">
+                <h1 class="title">Create an account</h1>
+
+                <!-- <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" Required="true" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                </div> -->
+
+
+                <div class="col-sm-12 mb-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required />
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" minlength="8" id="password" name="password"
+                            required />
+                        <p id="strength"></p>
+                    </div>
+
+                    <!-- <div class="col-sm-6 mb-4">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="Password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            required />
+                    </div>
+                    <p id="passwordchecker"></p> -->
+                </div>
+
+                <!-- <div class="col-sm-12 mb-4">
+                    <label for="gender" class="form-label w-100">Gender</label>
+
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="male" class="form-check-input" required>
+                        <label for="male" class="form-check-inline">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" id="female" class="form-check-input" required>
+                        <label for="female" class="form-check-inline">Female</label>
+                    </div>
+                </div> -->
+
+                <div class="OTP">   
+                    <input type="text" name="" value="" id="txt" required><br>
+                    <!-- <s style="text-decoration: none;"></s> -->
+                    
+                </div>
+
+                <button id="loginBtn" class="btn btn-dark w-50">
+                    Login
+                </button> 
+                 <!-- <div class="col-sm-12">
+                    
+                        <input type="button"  value="Sign up">
+                    
+                </div>  -->
+            </form>
+        </div>
+    </div>

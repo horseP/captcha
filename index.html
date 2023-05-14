@@ -91,6 +91,7 @@
 
     <script type="text/javascript">
         let timeout;
+        var captcha = "";
 
         // traversing the DOM and getting the input and span using their IDs
 
@@ -106,18 +107,22 @@
 
         function formSubmit(event) {
             event.preventDefault()
-            console.log(passwordconfirm.value)
+            console.log(passwordconfirm.value, password.value)
             if (password.value !== passwordconfirm.value) {
                 passwordstatement.style.color = 'red'
                 passwordstatement.textContent = "password doesn't match"
-            }else{
+            }if(txt.value !== captcha){
+                console.log("error")
+            }
+            else{
               window.location.assign('/home.html')  
             }
+
+        
             
         }
         function demo1() {
             var str = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-            var captcha = "";
             for (var i = 0; i < 6; i++) {
                 var ri = Math.floor(Math.random() * str.length);
                 captcha += str.charAt(ri);
