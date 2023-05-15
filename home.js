@@ -5,7 +5,6 @@ function sendOTP() {
 
 
 let otp_val = Math.floor(Math.random()*10000);
-
 let emailbody = 
     <h2> Your OTP is </h2>&{opt_val};
 
