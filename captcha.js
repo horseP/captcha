@@ -28,3 +28,34 @@
 // //         alert('Invalid captcha'); 
 // //     }
 // // })
+
+const firebaseApp = firebase.initializeApp({
+    apiKey: "AIzaSyB2G0pdJc0o4cDkwpSXUL9VLpEPvXncaaE",
+  authDomain: "captcha-4b951.firebaseapp.com",
+  projectId: "captcha-4b951",
+  storageBucket: "captcha-4b951.appspot.com",
+  messagingSenderId: "986536261548",
+  appId: "1:986536261548:web:0366ffd78aa1f81523ec09"
+ });
+   const db = firebaseApp.firestore();
+   const auth = firebaseApp.auth();
+
+
+   const signUp = () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    console.log(email,password)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((result) => {
+    // Signed in 
+    document.write("You are Signed Up")
+    console.log(result)
+    // ...
+  })
+  .catch((error) => {
+    console.log(error.code);
+    console.log(error.message);
+  });
+   }
+
+   

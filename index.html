@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/app.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="captcha.js"></script>
+    <!-- <script src="http://unpkg.com/sweetalert -->
 </head>
 
 <body onload="demo1()">
@@ -18,7 +22,7 @@
             <div class="registration_image">
                 <div class="overlay"></div>
                 <h1 class="title">Get <br /> In Touch <br /> With Us</h1>
-                <p class="site">www.mywebsite.com</p>
+                <p class="site">cybersecurity</p>
             </div>
 
             <form class="registration_form" onsubmit="formSubmit(event)">
@@ -74,17 +78,15 @@
                 <div class="captcha">
                     <input type="text" name="" value="" id="txt" required><br>
                     <s style="text-decoration: none;"></s>
-                    <img src="refresh.png" onclick="demo1()" height="40px" alt="">
+                    <img src="refresh.png" onclick="generateCaptcha()" height="40px" alt="">
                 </div>
 
-                <button id="submitBtn" class="btn btn-dark w-50">
+                <button id="submitBtn" onclick="signUp()" class="btn btn-dark w-50">
                     Sign up
                 </button>
-                <!-- <div class="col-sm-12">
-                    
-                        <input type="button"  value="Sign up"
-                    
-                </div> -->
+
+                <p>Already have an account?</p>
+                <span><a href="login.html">Sign In</a></span>
             </form>
         </div>
     </div>
@@ -115,20 +117,21 @@
                 console.log("error")
             }
             else{
-              window.location.assign('/home.html')  
+              window.location.assign('/login.html')  
             }
 
         
             
         }
-        function demo1() {
-            var str = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-            for (var i = 0; i < 6; i++) {
-                var ri = Math.floor(Math.random() * str.length);
-                captcha += str.charAt(ri);
-            }
-            document.querySelector("s").textContent = captcha;
+        function generateCaptcha() {
+        const characters = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+        captcha = "";
+        for (let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            captcha += characters.charAt(randomIndex);
         }
+        document.querySelector("s").textContent = captcha;
+    }
 
         function StrengthChecker(PasswordParameter) {
             // We then change the badge's color and text based on the password strength
@@ -164,7 +167,7 @@
         });
 
 
-
+        generateCaptcha();
 
     </script>
 
