@@ -12,7 +12,7 @@
     <script src="captcha.js"></script>
 </head>
 
-<body onload="demo1()">
+<body>
     <div class="registration">
         <div class="registration_container">
             <div class="registration_image">
@@ -41,6 +41,16 @@
                 <button id="loginBtn" onclick="singIn"  class="btn btn-dark w-50">
                     Login
                 </button>
+
+
+                <script>
+                    function signIn() {
+                        // Perform login verification and validation here
+            
+                        // Redirect to the dashboard page after successful login
+                        window.location.href = "home.html";
+                    }
+                </script>
 
                                
             </form>
